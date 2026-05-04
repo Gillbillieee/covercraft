@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoverCraft — AI Cover Letter Generator | Free Online Cover Letter Builder</title>
+  <meta name="description" content="Generate professional cover letters in minutes with our free AI-powered builder. Multiple templates, customizable tones. No signup required.">
+  <link rel="stylesheet" href="/src/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo"><span class="logo-icon">✉️</span> CoverCraft</a>
+      <div class="nav-links">
+        <a href="#generator" class="nav-link">Generator</a>
+        <a href="#templates" class="nav-link">Templates</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#generator" class="btn btn-sm btn-outline">Generate Free</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Write Cover Letters That Get You <span class="gradient-text">Interviews</span></h1>
+      <p class="hero-subtitle">Generate professional, personalized cover letters in minutes. AI-powered templates tailored to any industry or role.</p>
+    </div>
+  </section>
+
+  <section id="generator" class="gen-section">
+    <div class="container">
+      <div class="gen-card">
+        <div class="gen-header">
+          <h2>✉️ Cover Letter Generator</h2>
+          <p class="app-hint">Free — no signup required</p>
+        </div>
+        <div class="gen-body">
+          <div class="input-panel">
+            <div class="panel-header">
+              <h3>📝 Your Details</h3>
+              <button class="btn btn-sm btn-outline" onclick="loadSample()">Load Sample</button>
+            </div>
+
+            <div class="form-group">
+              <label for="yourName">Your Name</label>
+              <input type="text" id="yourName" placeholder="John Doe">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="yourEmail">Your Email</label>
+                <input type="email" id="yourEmail" placeholder="john@example.com">
+              </div>
+              <div class="form-group">
+                <label for="yourPhone">Your Phone</label>
+                <input type="tel" id="yourPhone" placeholder="+1 555-1234">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="yourTitle">Your Current Title</label>
+              <input type="text" id="yourTitle" placeholder="Software Engineer">
+            </div>
+
+            <hr class="divider">
+
+            <div class="panel-header">
+              <h3>🏢 Job Details</h3>
+            </div>
+
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" id="companyName" placeholder="Google">
+            </div>
+            <div class="form-group">
+              <label for="jobTitle">Position Applying For</label>
+              <input type="text" id="jobTitle" placeholder="Senior Software Engineer">
+            </div>
+            <div class="form-group">
+              <label for="hiringManager">Hiring Manager Name (optional)</label>
+              <input type="text" id="hiringManager" placeholder="Jane Smith">
+            </div>
+
+            <hr class="divider">
+
+            <div class="panel-header">
+              <h3>🎯 Key Points</h3>
+            </div>
+
+            <div class="form-group">
+              <label for="keyAchievements">Key Achievements (one per line)</label>
+              <textarea id="keyAchievements" rows="4" placeholder="Led a team of 5 engineers to launch...&#10;Reduced server costs by 40%..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="whyCompany">Why This Company? (optional)</label>
+              <textarea id="whyCompany" rows="2" placeholder="I admire your commitment to open source..."></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tone">Tone</label>
+                <select id="tone">
+                  <option value="professional">Professional</option>
+                  <option value="enthusiastic">Enthusiastic</option>
+                  <option value="confident">Confident</option>
+                  <option value="concise">Concise</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="templateSelect">Template</label>
+                <select id="templateSelect">
+                  <option value="modern">Modern</option>
+                  <option value="classic">Classic</option>
+                  <option value="creative">Creative</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg" onclick="generateLetter()">✨ Generate Cover Letter</button>
+          </div>
+
+          <div class="output-panel">
+            <div class="output-header">
+              <h3>Your Cover Letter</h3>
+              <div class="output-actions">
+                <button class="btn btn-sm btn-outline" onclick="copyLetter()">📋 Copy</button>
+                <button class="btn btn-sm btn-primary" onclick="downloadPDF()">📥 PDF</button>
+              </div>
+            </div>
+
+            <div id="letterOutput" class="letter-output">
+              <div class="empty-state" id="letterEmpty">
+                <div class="empty-icon">✉️</div>
+                <p>Your personalized cover letter will appear here.</p>
+                <p class="empty-hint">Fill in the details and hit generate!</p>
+              </div>
+            </div>
+
+            <div id="letterLoading" class="loading-state" style="display:none;">
+              <div class="spinner"></div>
+              <p>Generating your cover letter...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates Section -->
+  <section id="templates" class="templates-section">
+    <div class="container">
+      <h2>Choose Your Template</h2>
+      <div class="templates-grid">
+        <div class="template-card active" onclick="selectTemplate('modern')">
+          <div class="template-preview modern-preview"></div>
+          <h3>Modern</h3>
+          <p>Clean design with accent borders</p>
+        </div>
+        <div class="template-card" onclick="selectTemplate('classic')">
+          <div class="template-preview classic-preview"></div>
+          <h3>Classic</h3>
+          <p>Traditional business letter format</p>
+        </div>
+        <div class="template-card" onclick="selectTemplate('creative')">
+          <div class="template-preview creative-preview"></div>
+          <h3>Creative</h3>
+          <p>Bold, memorable opening paragraph</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <h2>Simple Pricing</h2>
+      <p class="pricing-subtitle">Start free. Upgrade when you're ready.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-badge free">Free</div>
+          <h3>Starter</h3>
+          <div class="price">$0<span>/forever</span></div>
+          <ul class="feature-list">
+            <li>✅ 3 cover letter templates</li>
+            <li>✅ Unlimited generations</li>
+            <li>✅ PDF download</li>
+            <li>✅ Copy to clipboard</li>
+            <li>❌ Industry-specific templates</li>
+            <li>❌ AI writing assistant</li>
+          </ul>
+          <button class="btn btn-outline btn-lg" onclick="document.getElementById('yourName').focus()">Generate Free</button>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge pro">PRO</div>
+          <h3>Pro</h3>
+          <div class="price">$9<span>/month</span></div>
+          <ul class="feature-list">
+            <li>✅ Everything in Free</li>
+            <li>✅ 15+ industry templates</li>
+            <li>✅ AI writing assistant</li>
+            <li>✅ Job description analysis</li>
+            <li>✅ ATS keyword optimization</li>
+            <li>✅ Priority support</li>
+          </ul>
+          <button class="btn btn-primary btn-lg">Upgrade to Pro</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand"><span class="logo-icon">✉️</span> CoverCraft</div>
+      <p>Built for job seekers who want to stand out.</p>
+      <p class="footer-note">&copy; 2026 CoverCraft. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/src/js/app.js"></script>
+</body>
+</html>
